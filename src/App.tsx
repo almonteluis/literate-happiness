@@ -79,16 +79,25 @@ const App = () => {
               <tbody>
                 <tr>
                   <td className="text-text-primary dark:text-text-primary-dark">
-                    {JSON.stringify(s.id)}
+                    {s.id}
                   </td>
                   <td className="text-text-primary dark:text-text-primary-dark">
-                    {JSON.stringify(s.name)}
+                    {s.name}
                   </td>
                   <td className="text-text-primary dark:text-text-primary-dark">
-                    {JSON.stringify(s)}
+                    {s.nameAscii}
                   </td>
                   <td className="text-text-primary dark:text-text-primary-dark">
-                    {JSON.stringify(s)}
+                    {s.country}
+                  </td>
+                  <td className="text-text-primary dark:text-text-primary-dark">
+                    {s.countryIso3}
+                  </td>
+                  <td className="text-text-primary dark:text-text-primary-dark">
+                    {s.capital}
+                  </td>
+                  <td className="text-text-primary dark:text-text-primary-dark">
+                    {s.population}
                   </td>
                 </tr>
               </tbody>
