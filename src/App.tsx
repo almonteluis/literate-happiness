@@ -1,6 +1,6 @@
 import "./index.css";
 
-import { useEffect, useCallback, useState } from "react";
+import { useEffect, useCallback, useState, useMemo } from "react";
 import type { ChangeEvent } from "react";
 
 import type { City } from "./api/getCities";
@@ -26,6 +26,11 @@ const App = () => {
       }
     }
   }, []);
+
+  const tableHeaders = useMemo(() => {
+    if (!cities || cities.length === 0) return [];
+    return Object.keys(cities[0]);
+  }, [cities]);
 
   useEffect(() => {
     runSearch(searchTerm);
@@ -59,14 +64,37 @@ const App = () => {
       {error ? (
         <div className="text-text-primary dark:text-text-primary-dark">{`Eek! ${error.message}`}</div>
       ) : (
-        cities.map((s) => (
-          <div
-            className="text-text-primary dark:text-text-primary-dark"
-            key={s.id}
-          >
-            {JSON.stringify(s)}
-          </div>
-        ))
+        <table>
+          <thead>
+            <tr>
+              {tableHeaders.map((header, i) => (
+                <th key={i} scope="col">
+                  {header}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          {cities.map((s) => (
+            <>
+              <tbody>
+                <tr>
+                  <td className="text-text-primary dark:text-text-primary-dark">
+                    {JSON.stringify(s.id)}
+                  </td>
+                  <td className="text-text-primary dark:text-text-primary-dark">
+                    {JSON.stringify(s.name)}
+                  </td>
+                  <td className="text-text-primary dark:text-text-primary-dark">
+                    {JSON.stringify(s)}
+                  </td>
+                  <td className="text-text-primary dark:text-text-primary-dark">
+                    {JSON.stringify(s)}
+                  </td>
+                </tr>
+              </tbody>
+            </>
+          ))}
+        </table>
       )}
     </RootLayout>
   );
