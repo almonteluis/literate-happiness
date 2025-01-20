@@ -1,12 +1,11 @@
 import "./index.css";
 
-import { useEffect, useCallback, useState, useMemo } from "react";
+import { useEffect, useCallback, useState } from "react";
 import type { ChangeEvent } from "react";
-
 import type { City } from "./api/getCities";
 import { getCities } from "./api/getCities";
-
 import RootLayout from "./features/RootLayout/RootLayout";
+import Table from "./components/Table/Table";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -26,11 +25,6 @@ const App = () => {
       }
     }
   }, []);
-
-  const tableHeaders = useMemo(() => {
-    if (!cities || cities.length === 0) return [];
-    return Object.keys(cities[0]);
-  }, [cities]);
 
   useEffect(() => {
     runSearch(searchTerm);
@@ -64,46 +58,8 @@ const App = () => {
       {error ? (
         <div className="text-text-primary dark:text-text-primary-dark">{`Eek! ${error.message}`}</div>
       ) : (
-        <table>
-          <thead>
-            <tr>
-              {tableHeaders.map((header, i) => (
-                <th key={i} scope="col">
-                  {header}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          {cities.map((s) => (
-            <>
-              <tbody>
-                <tr>
-                  <td className="text-text-primary dark:text-text-primary-dark">
-                    {s.id}
-                  </td>
-                  <td className="text-text-primary dark:text-text-primary-dark">
-                    {s.name}
-                  </td>
-                  <td className="text-text-primary dark:text-text-primary-dark">
-                    {s.nameAscii}
-                  </td>
-                  <td className="text-text-primary dark:text-text-primary-dark">
-                    {s.country}
-                  </td>
-                  <td className="text-text-primary dark:text-text-primary-dark">
-                    {s.countryIso3}
-                  </td>
-                  <td className="text-text-primary dark:text-text-primary-dark">
-                    {s.capital}
-                  </td>
-                  <td className="text-text-primary dark:text-text-primary-dark">
-                    {s.population}
-                  </td>
-                </tr>
-              </tbody>
-            </>
-          ))}
-        </table>
+        // moved table to separate component
+        <Table data={cities} rowsPerPage={10} />
       )}
     </RootLayout>
   );
