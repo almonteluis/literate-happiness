@@ -1,11 +1,28 @@
-import "./index.css";
+/**
+ * App component demonstrates proper Context usage.
+ *
+ * Key Points:
+ * 1. Provider Placement:
+ *    - TableProvider wraps only the Table component, not the entire app
+ *    - This prevents unnecessary re-renders of unrelated components
+ *
+ * 2. Error Handling:
+ *    - Table is only rendered if there's no error
+ *    - Error state prevents invalid data from reaching the context
+ *
+ * 3. Data Flow:
+ *    - Search results flow through initialData prop to context
+ *    - Context handles internal updates and sorting
+ */
 
+import "./index.css";
+import { TableProvider } from "./contexts/TableContext";
 import { useEffect, useCallback, useState } from "react";
 import type { ChangeEvent } from "react";
 import type { City } from "./api/getCities";
 import { getCities } from "./api/getCities";
 import RootLayout from "./features/RootLayout/RootLayout";
-import Table from "./components/Table/Table";
+import Table from "@/components/Table/Table";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -59,7 +76,9 @@ const App = () => {
         <div className="text-text-primary dark:text-text-primary-dark">{`Eek! ${error.message}`}</div>
       ) : (
         // moved table to separate component
-        <Table data={cities} rowsPerPage={10} />
+        <TableProvider initialData={cities}>
+          <Table />
+        </TableProvider>
       )}
     </RootLayout>
   );

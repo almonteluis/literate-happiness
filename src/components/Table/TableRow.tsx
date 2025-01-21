@@ -1,40 +1,47 @@
-import type { City } from "../../api/getCities";
+// * TableRow Component
+//  *
+//  * Renders table rows using data from context.
+//  *
+//  * Implementation Decisions:
+//  * 1. Dynamic column rendering based on tableHeaders
+//  * 2. String conversion for all cell values
+//  * 3. Compound keys for better React reconciliation
+//  *
+//  * Trade-offs:
+//  * - Converts all values to strings
+//  *   + Pros: Simple, consistent rendering
+//  *   - Cons: Loses type information, might need formatting
+//  *
+//  * - Uses context for data access
+//  *   + Pros: Simpler component, no prop drilling
+//  *   - Cons: Less explicit about data dependencies
+//  *
+//  * Gotchas:
+//  * - Key generation might need improvement for better uniqueness
+//  * - No cell formatting options (all values rendered as strings)
+//  *
+//  * Future Improvements:
+//  * - Add cell formatting options
 
-// Props interface for the TableRow component that expects a slice of City data
-interface SliceProps {
-  slice: City[];
-}
+import { useTableContext } from "@/contexts/TableContext";
 
 // TableRow component renders the table body with city data
 // It maps through the slice array and displays each city's properties in a row
-export default function TableRow({ slice }: SliceProps) {
+export default function TableRow() {
+  const { slice, tableHeaders } = useTableContext();
   return (
     <tbody>
       {/* Map through each city in the slice and create a table row */}
-      {slice.map((value, key) => (
-        <tr key={key}>
-          {/* Each cell displays a specific property of the city with consistent styling */}
-          <td className="text-text-primary dark:text-text-primary-dark">
-            {value.id}
-          </td>
-          <td className="text-text-primary dark:text-text-primary-dark">
-            {value.name}
-          </td>
-          <td className="text-text-primary dark:text-text-primary-dark">
-            {value.nameAscii}
-          </td>
-          <td className="text-text-primary dark:text-text-primary-dark">
-            {value.country}
-          </td>
-          <td className="text-text-primary dark:text-text-primary-dark">
-            {value.countryIso3}
-          </td>
-          <td className="text-text-primary dark:text-text-primary-dark">
-            {value.capital}
-          </td>
-          <td className="text-text-primary dark:text-text-primary-dark">
-            {value.population}
-          </td>
+      {slice.map((city) => (
+        <tr key={city.id}>
+          {tableHeaders.map((header) => (
+            <td
+              key={`${city.id}-${header}`}
+              className="text-text-primary dark:text-text-primary-dark"
+            >
+              {String(city[header])}
+            </td>
+          ))}
         </tr>
       ))}
     </tbody>
