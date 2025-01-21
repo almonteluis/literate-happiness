@@ -40,23 +40,29 @@ export default function TableHeader() {
   };
 
   return (
-    <thead className="text-xs uppercase bg-[rgb(43,171,173)] text-white">
-      <tr>
-        {/* rendering the tableHeader array passed in from table */}
-        {tableHeaders.map((header, i) => (
-          <th
-            key={i}
-            scope="col"
-            className="px-6 py-4 font-semibold hover:bg-[rgb(10,128,128)] cursor-pointer transition-colors duration-200 border-r-amber-700"
-            onClick={() => handleSort(header)}
-          >
-            <div className="flex gap-3 justify-between">
-              {header}
-              {getSortIcon(header)}
-            </div>
-          </th>
-        ))}
-      </tr>
-    </thead>
+    <>
+      <thead className=" text-[#f8f5f2] bg-[#005961] sticky top-0">
+        <tr>
+          {/* rendering the tableHeader array passed in from table */}
+          {tableHeaders.map((header, i) => (
+            <th
+              key={i}
+              scope="col"
+              className="px-4 whitespace-nowrap md:px-6 md:py-4 font-semibold hover:bg-[rgb(10,128,128)] cursor-pointer transition-colors duration-200px-6 py-4 border-b"
+              onClick={() => handleSort(header)}
+            >
+              <div className="flex items-center justify-between gap-2">
+                <span className="hidden md:block">{header}</span>
+                <span className="md:hidden">
+                  {/* Shortened header text for mobile */}
+                  {header.length > 8 ? `${header.slice(0, 8)}...` : header}
+                </span>
+                {getSortIcon(header)}
+              </div>
+            </th>
+          ))}
+        </tr>
+      </thead>
+    </>
   );
 }

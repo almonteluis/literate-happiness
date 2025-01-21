@@ -54,90 +54,56 @@ export default function TableFooter() {
   }, [slice.length, page, setPage]);
 
   return (
-    <tfoot>
-      <tr>
-        <td colSpan={7} className="bg-[rgb(251,250,250)]">
-          {/* Set colspan to match your total columns */}
-          <div className="flex items-center justify-between p-4 border-t border-[rgb(43,171,173)]/20">
-            {/* Per page selector */}
-            <div className="flex items-center gap-2">
-              <span className="text-[rgb(34,37,37)] text-sm">
-                Page {page} of {range.length} ({slice.length} items)
-              </span>
-              <select
-                className="bg-white border border-[rgb(43,171,173)] text-[rgb(34,37,37)] rounded-lg px-3 py-2"
-                value={rowsPerPage}
-                onChange={handleRowsPerPageChange}
-              >
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-              </select>
-            </div>
-
-            {/* Pagination */}
-            <div className="flex gap-2">
-              {/* first page */}
-              <button
-                onClick={goToFirstPage}
-                disabled={page === 1}
-                className={`p-2 rounded-lg ${
-                  page === 1
-                    ? "text-gray-400 cursor-not-allowed"
-                    : "text-[rgb(43,171,173)] hover:bg-[rgb(43,171,173)]/10"
-                }`}
-                aria-label="First page"
-              >
-                <span className="text-lg">⟪</span>
-              </button>
-              {/* previous page */}
-              <button
-                onClick={goToPreviousPage}
-                disabled={page === 1}
-                className={`p-2 rounded-lg ${
-                  page === 1
-                    ? "text-gray-400 cursor-not-allowed"
-                    : "text-[rgb(43,171,173)] hover:bg-[rgb(43,171,173)]/10"
-                }`}
-                aria-label="Previous page"
-              >
-                <span className="text-lg">⟨</span>
-              </button>
-
-              <span className="px-4 py-2">
-                {page} / {range.length}
-              </span>
-
-              {/* next page */}
-              <button
-                onClick={goToNextPage}
-                disabled={page === range.length}
-                className={`p-2 rounded-lg ${
-                  page === range.length
-                    ? "text-gray-400 cursor-not-allowed"
-                    : "text-[rgb(43,171,173)] hover:bg-[rgb(43,171,173)]/10"
-                }`}
-                aria-label="Next page"
-              >
-                <span className="text-lg">⟩</span>
-              </button>
-              {/* last page */}
-              <button
-                onClick={goToLastPage}
-                disabled={page === range.length}
-                className={`p-2 rounded-lg ${
-                  page === range.length
-                    ? "text-gray-400 cursor-not-allowed"
-                    : "text-[rgb(43,171,173)] hover:bg-[rgb(43,171,173)]/10"
-                }`}
-                aria-label="Last page"
-              >
-                <span className="text-lg">⟫</span>
-              </button>
-            </div>
+    <div className="max-w-7xl mx-auto">
+      <div className="bg-[rgb(251,250,250)] mt-auto border-t">
+        <div className="flex items-center justify-between p-4">
+          <div className="flex items-center gap-2">
+            <span className="text-[rgb(34,37,37)] text-sm whitespace-nowrap">
+              Page {page} of {range.length} ({slice.length} items)
+            </span>
+            <select
+              className="bg-white border border-[#005961] text-[rgb(34,37,37)] rounded-lg px-2 py-1 md:px-3 md:py-2"
+              value={rowsPerPage}
+              onChange={handleRowsPerPageChange}
+            >
+              <option value="10">10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+            </select>
           </div>
-        </td>
-      </tr>
-    </tfoot>
+
+          <div className="flex gap-2">
+            <button
+              onClick={goToFirstPage}
+              disabled={page === 1}
+              className="p-2 rounded-lg disabled:text-gray-400 disabled:cursor-not-allowed text-gray-700 hover:bg-gray-100"
+            >
+              <span className="text-lg">⟪</span>
+            </button>
+            <button
+              onClick={goToPreviousPage}
+              disabled={page === 1}
+              className="p-2 rounded-lg disabled:text-gray-400 disabled:cursor-not-allowed text-gray-700 hover:bg-gray-100"
+            >
+              <span className="text-lg">⟨</span>
+            </button>
+            <button
+              onClick={goToNextPage}
+              disabled={page === range.length}
+              className="p-2 rounded-lg disabled:text-gray-400 disabled:cursor-not-allowed text-gray-700 hover:bg-gray-100"
+            >
+              <span className="text-lg">⟩</span>
+            </button>
+            <button
+              onClick={goToLastPage}
+              disabled={page === range.length}
+              className="p-2 rounded-lg disabled:text-gray-400 disabled:cursor-not-allowed text-gray-700 hover:bg-gray-100"
+            >
+              <span className="text-lg">⟫</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
