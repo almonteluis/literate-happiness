@@ -22,7 +22,8 @@ import type { ChangeEvent } from "react";
 import type { City } from "./api/getCities";
 import { getCities } from "./api/getCities";
 import RootLayout from "./features/RootLayout/RootLayout";
-import Table from "@/components/Table/Table";
+import SortableTable from "@/components/Table/SortableTable";
+import { MdOutlineSearch } from "react-icons/md";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -53,31 +54,31 @@ const App = () => {
 
   return (
     <RootLayout>
-      <h1 className="text-text-primary dark:text-text-primary-dark">
+      <h1 className="text-text-primary text-center dark:text-text-primary-dark">
         City List
       </h1>
-      <form>
-        <label
-          className="text-text-primary dark:text-text-primary-dark"
-          htmlFor="search"
-        >
-          Search
-        </label>
-        <input
-          id="search"
-          name="search"
-          type="text"
-          value={searchTerm}
-          onChange={onSearchTermChange}
-          className="border"
-        />
+      <form className="flex justify-center py-3">
+        <div className="relative max-w-md mx-auto">
+          <input
+            id="search"
+            name="search"
+            type="text"
+            value={searchTerm}
+            onChange={onSearchTermChange}
+            placeholder="Search for a city"
+            className="w-full rounded-lg text-md border border-gray-300 text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-400 pl-8"
+          />
+          <span className="absolute left-3 top-1/2 transform -translate-y-1/2">
+            <MdOutlineSearch />
+          </span>
+        </div>
       </form>
       {error ? (
         <div className="text-text-primary dark:text-text-primary-dark">{`Eek! ${error.message}`}</div>
       ) : (
         // moved table to separate component
         <TableProvider initialData={cities}>
-          <Table />
+          <SortableTable />
         </TableProvider>
       )}
     </RootLayout>
