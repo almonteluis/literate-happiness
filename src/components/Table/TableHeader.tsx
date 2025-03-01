@@ -29,7 +29,6 @@ export default function TableHeader() {
   const { tableHeaders, sortConfig, handleSort } = useTableContext();
 
   const getSortIcon = (columnName: keyof City) => {
-    
     if (sortConfig.column === columnName) {
       return sortConfig.direction === "asc" ? (
         <p className="inline w-4 h-4">↑</p>

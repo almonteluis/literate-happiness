@@ -31,24 +31,24 @@ export default function TableRow() {
   const { slice, tableHeaders } = useTableContext();
   return (
     <>
-    <tbody className="bg-[#f8f5f2]">
-      {/* Map through each city in the slice and create a table row */}
-      {slice.map((city) => (
-        <tr
-          key={city.id}
-          className="bg-[#f8f5f2] border-b hover:bg-[#005961]/10"
-        >
-          {tableHeaders.map((header) => (
-            <td
-              key={`${city.id}-${header}`}
-              className="px-6 py-4 text-text-primary dark:text-text-primary-dark whitespace-nowrap border-b"
-            >
-              {String(city[header])}
-            </td>
-          ))}
-        </tr>
-      ))}
-    </tbody>
+      <tbody className="bg-[#f8f5f2]">
+        {/* Map through each city in the slice and create a table row */}
+        {slice.map((city) => (
+          <tr
+            key={city.id}
+            className="bg-[#f8f5f2] border-b hover:bg-[#005961]/10"
+          >
+            {tableHeaders.map((header) => (
+              <td
+                key={`${city.id}-${header}`}
+                className="px-6 py-4 text-text-primary dark:text-text-primary-dark whitespace-nowrap border-b"
+              >
+                {String(city[header])}
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
     </>
   );
 }

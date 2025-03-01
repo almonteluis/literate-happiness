@@ -80,7 +80,7 @@ export function TableProvider({
     (newPage: number | ((prevPage: number) => number)) => {
       setPage(newPage);
     },
-    []
+    [],
   );
 
   // update cities when initialData changes (e.g., from search)

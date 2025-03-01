@@ -45,12 +45,12 @@ export const getCachedCities = () => {
 };
 
 /**
-* Retrieves cached cities if available and not expired
-* Returns null if:
-* - No cache exists
-* - Cache has expired
-* - Cache data is corrupted
-*/
+ * Retrieves cached cities if available and not expired
+ * Returns null if:
+ * - No cache exists
+ * - Cache has expired
+ * - Cache data is corrupted
+ */
 export const setCachedCities = (cities: City[]) => {
   const cachedData: CacheData = {
     cities,
