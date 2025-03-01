@@ -83,7 +83,6 @@ In this exercise, we'll be focusing on these elements of your implementation:
 <img src="./mock-up.png" width="800px" />
 </details>
 
-
 <details>
   <summary>
   Small screen mockup
@@ -105,14 +104,14 @@ _Note:_ These requirements use the "Priority Level Scale" where a P0 is the high
 
 ### Sorting
 
-- [ ] **P0**: As a user, I want to be able to toggle sorting (ascending) the search results by a single column
+- [x] **P0**: As a user, I want to be able to toggle sorting (ascending) the search results by a single column
 - [ ] **P1**: As a user, I want to be able to toggle between ascending, descending, or no sorting of the search results by a single column
 - [ ] **P2**: As a user, I want to be able to toggle between ascending, descending, or no sorting of the search results by multiple columns
 
 ### Pagination
 
-- [ ] **P0**: As a user, I want to be able to paginate through search results using a fixed page size (10)
-- [ ] **P0**: As a user, I want to be able to navigate between result pages
+- [x] **P0**: As a user, I want to be able to paginate through search results using a fixed page size (10)
+- [x] **P0**: As a user, I want to be able to navigate between result pages
 - [ ] **P2**: As a user, I want to be able to paginate through search results using a dynamic page size
 - [ ] **P3**: As a user, I want to be able to go all the way to the first and last pages of the search results
 

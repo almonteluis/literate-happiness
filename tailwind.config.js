@@ -48,6 +48,15 @@ module.exports = {
           DEFAULT: color.salt[900],
         },
       },
+      keyframe: {
+        "load-bar": {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" },
+        },
+      },
+      animation: {
+        "load-bar": "load-bar 2s infinite",
+      },
     },
   },
   plugins: [],

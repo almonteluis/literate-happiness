@@ -12,7 +12,7 @@ export default function RootLayout({
       <header>
         <Navbar />
       </header>
-      <main>{children}</main>
+      <main className="overflow-hidden">{children}</main>
       <Footer />
     </div>
   );

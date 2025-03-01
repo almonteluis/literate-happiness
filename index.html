@@ -4,8 +4,63 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gusto exercise</title>
+    <style>
+      #initial-loader {
+        position: fixed;
+        inset: 0;
+        background: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+
+      .gusto-text {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: rgb(43, 171, 173);
+        margin-bottom: 2rem;
+      }
+
+      .loading-bar {
+        width: 16rem;
+        height: 0.5rem;
+        background: #e5e7eb;
+        border-radius: 9999px;
+        overflow: hidden;
+      }
+
+      .loading-progress {
+        height: 100%;
+        background: rgb(43, 171, 173);
+        animation: load 2s infinite;
+      }
+
+      .loading-text {
+        margin-top: 1rem;
+        color: #4b5563;
+      }
+
+      @keyframes load {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
+    </style>
   </head>
   <body>
+    <!-- added loading screen for inital loading -->
+    <div id="initial-loader">
+      <div class="gusto-text">Gusto</div>
+      <div class="loading-bar">
+        <div class="loading-progress"></div>
+      </div>
+      <p class="loading-text">Loading cities...</p>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/index.tsx"></script>
   </body>
