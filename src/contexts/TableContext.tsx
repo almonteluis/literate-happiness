@@ -70,7 +70,6 @@ export function TableProvider({
 }) {
   const [cities, setCities] = useState<City[]>([...initialData]);
   const [sortConfig, setSortConfig] = useState<SortConfig>({
-    column: "name" as keyof City,
     direction: "asc" as SortDirection,
   });
   const [page, setPage] = useState(1);
@@ -81,7 +80,7 @@ export function TableProvider({
     (newPage: number | ((prevPage: number) => number)) => {
       setPage(newPage);
     },
-    [],
+    []
   );
 
   // update cities when initialData changes (e.g., from search)

@@ -39,6 +39,7 @@ const App = () => {
   }, []);
 
   const runSearch = useCallback(async (term: string) => {
+    setError(null);
     try {
       // added caching to improve performance after inital load
       setIsDataLoading(true);

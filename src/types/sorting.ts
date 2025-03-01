@@ -5,6 +5,6 @@ export type SortDirection = "asc" | "desc";
 
 // Define the structure for sort configuration
 export interface SortConfig {
-  column: keyof City;
+  column?: keyof City;
   direction: SortDirection;
 }

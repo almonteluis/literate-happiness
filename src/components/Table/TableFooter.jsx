@@ -56,15 +56,20 @@ export default function TableFooter() {
   return (
     <div className="max-w-7xl mx-auto">
       <div className="bg-[rgb(251,250,250)] mt-auto border-t">
-        <div className="flex items-center justify-between p-4">
+        <div className="flex items-center justify-between p-4 table-footer">
           <div className="flex items-center gap-2">
-            <span className="text-[rgb(34,37,37)] text-sm whitespace-nowrap">
+            <label
+              htmlFor="select-options"
+              className="text-[rgb(34,37,37)] text-sm whitespace-nowrap"
+            >
               Page {page} of {range.length} ({slice.length} items)
-            </span>
+            </label>
             <select
               className="bg-white border border-[#005961] text-[rgb(34,37,37)] rounded-lg px-2 py-1 md:px-3 md:py-2"
               value={rowsPerPage}
               onChange={handleRowsPerPageChange}
+              name="select-options"
+              id="select-options"
             >
               <option value="10">10</option>
               <option value="25">25</option>
